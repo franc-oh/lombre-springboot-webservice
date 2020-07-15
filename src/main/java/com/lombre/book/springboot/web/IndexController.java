@@ -1,5 +1,6 @@
 package com.lombre.book.springboot.web;
 
+import com.lombre.book.springboot.config.auth.LoginUser;
 import com.lombre.book.springboot.config.auth.dto.SessionUser;
 import com.lombre.book.springboot.posts.service.PostsService;
 import com.lombre.book.springboot.web.dto.PostsResponseDto;
@@ -9,26 +10,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.HttpSession;
-
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
 
     /**
      * 화면 이동_메인 페이지
      */
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
 
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-
         if(user != null) {
-            //model.addAttribute("userName", user.getName()); -- 프론트에서 CLASSPATH의 %USERNAME%으로 중복되는 현상
             model.addAttribute("loginUserName", user.getName());
         }
 
