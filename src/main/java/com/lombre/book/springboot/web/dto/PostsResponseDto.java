@@ -1,10 +1,7 @@
 package com.lombre.book.springboot.web.dto;
 
 import com.lombre.book.springboot.domain.posts.Posts;
-import javafx.geometry.Pos;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 public class PostsResponseDto {
