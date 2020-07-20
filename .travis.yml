@@ -14,7 +14,7 @@ cache:
     - '$HOME/.gradle'
 
 before_script:
-  - chmod a+x gradlew
+  - "chmod a+x gradlew"
 
 script: "./gradlew clean build"
 
